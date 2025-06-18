@@ -1,4 +1,4 @@
 package com.BaazarDevWeb.Baazar.util;
 
-public record TokenResponse() {
+public record TokenResponse(long token) {
 }
