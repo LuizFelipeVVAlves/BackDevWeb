@@ -1,4 +1,7 @@
 package com.BaazarDevWeb.Baazar.repository;
 
-public interface CategoriaRepository {
+import com.BaazarDevWeb.Baazar.model.Categoria;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface CategoriaRepository extends JpaRepository<Categoria, Long> {
 }
