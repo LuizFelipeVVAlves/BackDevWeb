@@ -15,28 +15,27 @@ import java.util.Optional;
 public interface ProdutoRepository extends JpaRepository<Produto, Long> {
 
     @Lock(LockModeType.PESSIMISTIC_WRITE)
-    @Query("select p from Produto p left outer join fetch p.categoria where p.id = :id")
+    @Query("select p from Produto p where p.id = :id")
     Optional<Produto> recuperarProdutoPorIdComLock(@Param("id") Long id);
 
-    @Query("select p from Produto p left outer join fetch p.categoria order by p.id")
+    @Query("select p from Produto p order by p.id")
     List<Produto> recuperarProdutosComCategoria();
 
-    @Query("select p from Produto p left outer join fetch p.categoria where p.id = :id")
+    @Query("select p from Produto p where p.id = :id")
     Optional<Produto> recuperarProdutoPorId(@Param("id") Long id);
 
     @Query(
             value = "select p " +
                     "from Produto p " +
-                    "left outer join fetch p.categoria " +
                     "where p.nome like :nome " +
                     "order by p.id",
             countQuery = "select count(p) from Produto p where p.nome like :nome"
     )
     Page<Produto> recuperarProdutosComPaginacao(Pageable pageable, @Param("nome") String nome);
 
-    @Query("select p from Produto p " +
+    /*@Query("select p from Produto p " +
             "left outer join fetch p.categoria c " +
             "where c.slug = :slugCategoria " +
             "order by p.id")
-    List<Produto> recuperarProdutosPorSlugCategoria(@Param("slugCategoria") String slugCategoria);
+    List<Produto> recuperarProdutosPorSlugCategoria(@Param("slugCategoria") String slugCategoria);*/
 }
