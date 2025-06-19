@@ -2,6 +2,7 @@ package com.BaazarDevWeb.Baazar.service;
 
 import com.BaazarDevWeb.Baazar.exception.EntidadeNaoEncontradaException;
 import com.BaazarDevWeb.Baazar.model.Produto;
+import com.BaazarDevWeb.Baazar.repository.InteracaoRepository;
 import com.BaazarDevWeb.Baazar.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

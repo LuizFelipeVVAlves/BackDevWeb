@@ -1,5 +1,6 @@
 package com.BaazarDevWeb.Baazar.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Min;
@@ -45,7 +46,7 @@ public class Produto {
     @DecimalMin(inclusive = true, value="0.1", message = "O 'Preço' deve ser maior ou igual a 0.1.")
     private BigDecimal preco;
 
-    @NotNull(message = "A 'Data de Cadastro' deve ser informada.")
+
     private LocalDate dataCadastro;
 
     /**
@@ -61,10 +62,11 @@ public class Produto {
      * name = "empresa_id": Nome da coluna.
      * nullable = false: Boa prática que garante que todo produto deve pertencer a uma empresa.
      */
-    @JoinColumn(name = "empresa_id", nullable = false)
+    @JoinColumn(name = "empresa_id")
     private Empresa empresa;
 
     @OneToOne(mappedBy = "produto", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private Interacao interacao;
 
     public Produto(String imagem, String nome, String slug, String descricao,

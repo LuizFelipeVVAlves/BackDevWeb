@@ -1,5 +1,6 @@
 package com.BaazarDevWeb.Baazar.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Min;
@@ -29,6 +30,7 @@ public class Interacao {
 
     @OneToOne
     @JoinColumn(name = "produto_id", referencedColumnName = "id")
+    @JsonBackReference
     private Produto produto;
 
     public Interacao(Produto produto){
