@@ -48,8 +48,23 @@ public class Produto {
     @NotNull(message = "A 'Data de Cadastro' deve ser informada.")
     private LocalDate dataCadastro;
 
+    /**
+     * Define a relação: Muitos produtos pertencem a UMA empresa.
+     * fetch = FetchType.LAZY: É uma otimização de performance CRÍTICA.
+     * Significa que os dados da Empresa só serão carregados do banco quando
+     * você explicitamente chamar produto.getEmpresa(). Isso evita carregar
+     * dados desnecessários em consultas de listas de produtos.
+     */
+    @ManyToOne(fetch = FetchType.LAZY)
+    /**
+     * Cria a coluna de chave estrangeira na tabela 'produto'.
+     * name = "empresa_id": Nome da coluna.
+     * nullable = false: Boa prática que garante que todo produto deve pertencer a uma empresa.
+     */
+    @JoinColumn(name = "empresa_id", nullable = false)
     private Empresa empresa;
 
+    @OneToOne(mappedBy = "produto", cascade = CascadeType.ALL, orphanRemoval = true)
     private Interacao interacao;
 
     public Produto(String imagem, String nome, String slug, String descricao,

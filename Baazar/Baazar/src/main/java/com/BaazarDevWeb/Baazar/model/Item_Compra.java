@@ -17,24 +17,25 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @ToString
 @Entity
-public class Interacao {
+public class Item_Compra {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private int curtidas;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "compra_id")
+    private Compra compra;
 
-    private int visualizacoes;
-
-    @OneToOne
-    @JoinColumn(name = "produto_id", referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "produto_id")
     private Produto produto;
 
-    public Interacao(Produto produto){
-        this.curtidas = 0;
-        this.visualizacoes = 0;
-        this.produto = produto;
-    }
+    private int quantidade;
 
+    public Item_Compra(Compra compra, Produto produto, int quantidade) {
+        this.compra = compra;
+        this.produto = produto;
+        this.quantidade = quantidade;
+    }
 }

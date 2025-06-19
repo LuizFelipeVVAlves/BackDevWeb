@@ -12,29 +12,32 @@ import lombok.ToString;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Date;
+
 @Getter
 @Setter
 @NoArgsConstructor
 @ToString
 @Entity
-public class Interacao {
+public class Compra {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private int curtidas;
+    @ManyToOne
+    @JoinColumn(name = "usuario_id", nullable = false, unique = true)
+    private Usuario usuario;
 
-    private int visualizacoes;
 
-    @OneToOne
-    @JoinColumn(name = "produto_id", referencedColumnName = "id")
-    private Produto produto;
+    private int valorTotal;
 
-    public Interacao(Produto produto){
-        this.curtidas = 0;
-        this.visualizacoes = 0;
-        this.produto = produto;
+    private LocalDate dataCompra;
+
+    public Compra(Usuario usuario, int valorTotal, LocalDate dataCompra) {
+        this.usuario = usuario;
+
+        this.valorTotal = valorTotal;
+        this.dataCompra = dataCompra;
     }
-
 }

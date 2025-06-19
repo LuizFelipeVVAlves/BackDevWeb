@@ -17,24 +17,22 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @ToString
 @Entity
-public class Interacao {
+public class Produto_Categoria {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private int curtidas;
+    @ManyToOne
+    @JoinColumn(name = "categoria_id")
+    private Categoria categoria;
 
-    private int visualizacoes;
-
-    @OneToOne
-    @JoinColumn(name = "produto_id", referencedColumnName = "id")
+    @ManyToOne
+    @JoinColumn(name = "produto_id")
     private Produto produto;
 
-    public Interacao(Produto produto){
-        this.curtidas = 0;
-        this.visualizacoes = 0;
+    public Produto_Categoria(Categoria categoria, Produto produto) {
+        this.categoria = categoria;
         this.produto = produto;
     }
-
 }

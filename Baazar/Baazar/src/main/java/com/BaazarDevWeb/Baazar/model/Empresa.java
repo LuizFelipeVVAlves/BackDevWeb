@@ -12,6 +12,9 @@ import lombok.ToString;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -25,6 +28,7 @@ public class Empresa {
 
     @NotEmpty(message = "O nome deve ser informado")
     private String nome;
+
 
     public Empresa(String nome){
         this.nome = nome;
