@@ -72,7 +72,7 @@ public class ProdutoService {
         return produtoRepository.recuperarProdutosComPaginacao(pageable, "%" + nome + "%");
     }
 
-    public List<Produto> recuperarProdutosPorSlugCategoria(String slugCategoria) {
+    /*public List<Produto> recuperarProdutosPorSlugCategoria(String slugCategoria) {
         return produtoRepository.recuperarProdutosPorSlugCategoria(slugCategoria);
-    }
+    }*/
 }
