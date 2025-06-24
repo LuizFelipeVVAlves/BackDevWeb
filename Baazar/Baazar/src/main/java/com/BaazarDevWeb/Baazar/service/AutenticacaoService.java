@@ -18,4 +18,9 @@ public class AutenticacaoService {
         return usuarioRepository.findByEmailAndSenha(
                 usuario.getEmail(), usuario.getSenha());
     }
+
+    public Usuario cadastroUsuario(Usuario usuario){
+
+        return usuarioRepository.save(usuario);
+    }
 }
