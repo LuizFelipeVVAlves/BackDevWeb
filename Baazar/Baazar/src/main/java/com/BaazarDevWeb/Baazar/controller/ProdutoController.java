@@ -33,7 +33,7 @@ public class ProdutoController {
         return produtoService.recuperarProdutos();
     }
 
-    // Requisição do tipo GET para http://localhost:8080/produtos/1
+    // Requisição do tipo GET para http://localhost:8080/produtos/id
     @GetMapping("{idProduto}")
     public Produto recuperarProdutoPorId(@PathVariable("idProduto") long id) {
         return produtoService.recuperarProdutoPorId(id);
